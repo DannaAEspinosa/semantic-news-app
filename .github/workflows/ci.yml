@@ -1,0 +1,50 @@
+name: CI
+
+# Trigger this workflow on pull requests to main or dev
+on:
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code from the PR
+      - uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # Install backend dependencies
+      - name: Install backend dependencies
+        run: |
+          echo "Installing backend dependencies..."
+          npm install
+        working-directory: ./backend
+
+      # Run backend tests
+      - name: Run backend tests
+        run: |
+          echo "Running backend tests..."
+          #npm test
+          echo "Backend tests are not set up yet."
+        working-directory: ./backend
+
+      # Install frontend dependencies
+      - name: Install frontend dependencies
+        run: |
+          echo "Installing frontend dependencies..."
+          npm install
+        working-directory: ./frontend
+
+      # Run frontend tests
+      - name: Run frontend tests
+        run: |
+          echo "Running frontend tests..."
+          #npm run test
+          echo "Frontend tests are not set up yet."
+        working-directory: ./frontend
